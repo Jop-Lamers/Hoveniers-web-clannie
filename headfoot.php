@@ -85,5 +85,5 @@ function renderFooter() {
 </body>
 </html>
 <?php
-}
+} // End of renderFooter function
 ?>
