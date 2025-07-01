@@ -45,13 +45,14 @@ renderHeader("Hendrik Hogendijk Hoveniers", "home");
             </div>
         </div>
     </section>
+<?php
+   include 'slideshow.php';
+?>
 
-    <section id="over-ons" class="about-section">
-        <h2>Over Hendrik Hogendijk</h2>
-        <p>Met meer dan 15 jaar ervaring in de hovenierssector, help ik u bij het realiseren van uw droomtuin. 
-        Vakmanschap, kwaliteit en persoonlijke aandacht staan centraal in mijn werk.</p>
-        <p>Ik werk voornamelijk in de regio Utrecht, Zeist en De Bilt, en ben gespecialiseerd in 
-        duurzame tuinoplossingen die jarenlang plezier geven.</p>
+    <section id="reviews" class="reviews-section">
+        <h2>Reviews</h2>
+        <p>Lees wat onze klanten zeggen over onze diensten.</p>
+        <!-- Placeholder for reviews, can be dynamically loaded -->
     </section>
 </main>
 
