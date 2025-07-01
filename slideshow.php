@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slideshow - Hoveniers Clannie</title>
     <style>
+      /* Slideshow CSS */
       * {
         margin: 0;
         padding: 0;
