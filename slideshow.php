@@ -187,9 +187,7 @@
     <img src="images/tuin1.webp" alt="Moderne Tuinaanleg" />
     <div class="slide-content">
       <div class="slide-title">Onze vijvers</div>
-      <div class="slide-description">
-       een mooie vijver! ideaal voor rust en ontspanning aan het water. 
-      </div>
+      <div class="slide-description">Een mooie vijver! ideaal voor rust en ontspanning aan het water.</div>
     </div>
   </div>
 
@@ -197,9 +195,7 @@
     <img src="images/tuin2.webp" alt="Groen Grasveld" />
     <div class="slide-content">
       <div class="slide-title">Groen Grasveld</div>
-      <div class="slide-description">
-        Een fris, strak gemaaid grasveldje biedt volop ruimte om te spelen en te genieten van het buitenleven. Perfect voor gezinnen en huisdieren.
-      </div>
+      <div class="slide-description">Een fris, strak gemaaid grasveldje biedt volop ruimte om te spelen en te genieten van het buitenleven. Perfect voor gezinnen en huisdieren.</div>
     </div>
   </div>
 
@@ -207,9 +203,7 @@
     <img src="images/tuin3.webp" alt="Kleine Stadstuin" />
     <div class="slide-content">
       <div class="slide-title">onze tegelaanleg</div>
-      <div class="slide-description">
-        onze mooie tegels zorgen voor een goeie basis voor in uw tuin met een van de sterkste anti groenaanslag lagen
-      </div>
+      <div class="slide-description">onze mooie tegels zorgen voor een goeie basis voor in uw tuin met een van de sterkste anti groenaanslag lagen</div>
     </div>
   </div>
 
@@ -217,9 +211,7 @@
     <img src="images/tuin4.webp" alt="Landelijke Tuin" />
     <div class="slide-content">
       <div class="slide-title">een moderne tuin</div>
-      <div class="slide-description">
-        een moderne tuin gemaakt met de beste kwaliteit materialen en producten, die zorgen voor een lange levensduur en weinig onderhoud.
-      </div>
+      <div class="slide-description">een moderne tuin gemaakt met de beste kwaliteit materialen en producten, die zorgen voor een lange levensduur en weinig onderhoud.</div>
     </div>
   </div>
 
@@ -235,53 +227,25 @@
 </div>
 
 <script>
-  // Array met slide informatie - HIER KUN JE NIEUWE PLAATJES TOEVOEGEN
-  const slides = [{
-      image: "images/tuin1.jpg",
-      title: "Moderne Tuinaanleg",
-      description: "Een prachtige moderne tuin met strakke lijnen en duurzame materialen. Inclusief tuinverlichting en automatisch irrigatiesysteem.",
-    },
-    {
-      image: "images/tuin2.jpg",
-      title: "Klassieke Tuinrenovatie",
-      description: "Renovatie van een klassieke tuin met behoud van de originele charme. Nieuwe beplanting en herstel van natuursteen elementen.",
-    },
-    {
-      image: "images/tuin3.jpg",
-      title: "Kleine Stadstuin",
-      description: "Optimaal gebruik van de ruimte in deze compacte stadstuin. Verticaal groen en multifunctionele elementen.",
-    },
-    {
-      image: "images/tuin4.jpg",
-      title: "Landelijke Tuin",
-      description: "Ruime landelijke tuin met natuurlijke materialen en inheemse beplanting. Perfect voor families met kinderen.",
-    },
-  ];
-
   let currentSlideIndex = 0;
   let slideInterval;
 
   function showSlide(index) {
-    const slideElements = document.querySelectorAll(".slide");
-    const dotElements = document.querySelectorAll(".dot");
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
 
-    // Hide all slides
-    slideElements.forEach((slide) => slide.classList.remove("active"));
-    dotElements.forEach((dot) => dot.classList.remove("active"));
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
 
-    // Show current slide
-    slideElements[index].classList.add("active");
-    dotElements[index].classList.add("active");
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
   }
 
   function changeSlide(direction) {
     currentSlideIndex += direction;
 
-    if (currentSlideIndex >= slides.length) {
-      currentSlideIndex = 0;
-    } else if (currentSlideIndex < 0) {
-      currentSlideIndex = slides.length - 1;
-    }
+    if (currentSlideIndex >= 4) currentSlideIndex = 0;
+    else if (currentSlideIndex < 0) currentSlideIndex = 3;
 
     showSlide(currentSlideIndex);
     resetInterval();
@@ -293,12 +257,8 @@
     resetInterval();
   }
 
-  function nextSlide() {
-    changeSlide(1);
-  }
-
   function startSlideshow() {
-    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    slideInterval = setInterval(() => changeSlide(1), 5000);
   }
 
   function resetInterval() {
@@ -306,41 +266,19 @@
     startSlideshow();
   }
 
-  // Start automatic slideshow immediately
-  document.addEventListener("DOMContentLoaded", function() {
+  // Initialize slideshow
+  document.addEventListener("DOMContentLoaded", () => {
     showSlide(0);
     startSlideshow();
+
+    const container = document.querySelector(".slideshow-container");
+    container.addEventListener("mouseenter", () => clearInterval(slideInterval));
+    container.addEventListener("mouseleave", startSlideshow);
   });
 
-  // Also start slideshow if DOM is already loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      showSlide(0);
-      startSlideshow();
-    });
-  } else {
-    showSlide(0);
-    startSlideshow();
-  }
-
-  // Pause slideshow on hover
-  const slideshowContainer = document.querySelector(".slideshow-container");
-  if (slideshowContainer) {
-    slideshowContainer.addEventListener("mouseenter", () => {
-      clearInterval(slideInterval);
-    });
-
-    slideshowContainer.addEventListener("mouseleave", () => {
-      startSlideshow();
-    });
-  }
-
   // Keyboard navigation
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "ArrowLeft") {
-      changeSlide(-1);
-    } else if (e.key === "ArrowRight") {
-      changeSlide(1);
-    }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") changeSlide(-1);
+    else if (e.key === "ArrowRight") changeSlide(1);
   });
 </script>

@@ -3,82 +3,13 @@ include 'headfoot.php';
 renderHeader("Hendrik Hogendijk Hoveniers", "home");
 ?>
 
-<style>
-.services-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.services-section h2 {
-    margin-bottom: 40px;
-    font-size: 2.5em;
-    color: #333;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    width: 100%;
-    max-width: 1000px;
-}
-
-.service-item {
-    background: white;
-    padding: 30px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.service-item:hover {
-    transform: translateY(-5px);
-}
-
-.service-item h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.service-item p {
-    color: #666;
-    line-height: 1.6;
-}
-
-@media screen and (max-width: 768px) {
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .services-section h2 {
-        font-size: 2em;
-    }
-}
-</style>
-
 <main class="content" id="over-ons">
     <h2 class="intro-title">Welkom bij de website van Hendrik Hogendijk, hovenier in de regio Utrecht, Zeist en de Bilt.</h2>
 
     <div class="main-section">
         <div class="text-block">
-            <p>
-                De tuin is een belangrijke plek van de woning, waar je het liefst zoveel mogelijk tijd in doorbrengt.
-                Bij Hendrik Hogendijk Hoveniers vind ik het daarom belangrijk dat iedereen zich thuis voelt in zijn of haar tuin.
-                Ik maak de tuin onderdeel van jouw 'thuis', door hem volledig op jouw wensen af te stemmen.
-            </p>
-            <p>
-                Met behulp van mooie, natuurlijke en duurzame producten en materialen creëer ik een tuin, die garant staat
-                voor een jarenlang plezierig buitenleven. Van een knusse veranda en een mooie vijver, tot een gezellig terras
-                en een kleurrijke bloemborder: ik stop al mijn energie erin.
-            </p>
+            <p>De tuin is een belangrijke plek van de woning, waar je het liefst zoveel mogelijk tijd in doorbrengt. Bij Hendrik Hogendijk Hoveniers vind ik het daarom belangrijk dat iedereen zich thuis voelt in zijn of haar tuin. Ik maak de tuin onderdeel van jouw 'thuis', door hem volledig op jouw wensen af te stemmen.</p>
+            <p>Met behulp van mooie, natuurlijke en duurzame producten en materialen creëer ik een tuin, die garant staat voor een jarenlang plezierig buitenleven. Van een knusse veranda en een mooie vijver, tot een gezellig terras en een kleurrijke bloemborder: ik stop al mijn energie erin.</p>
         </div>
         <div class="image-block">
             <img src="image.webphendrik.webp" alt="Hendrik Hogendijk portret" class="portrait">
@@ -116,32 +47,52 @@ renderHeader("Hendrik Hogendijk Hoveniers", "home");
     <?php include 'reviews.php'; ?>
 </section>
 
+<div class="footer-top-text">
+                <p>Ik streef ernaar om constant in contact te staan met onze klanten totdat de klus geklaard is. Als u vragen of speciale verzoeken heeft, stuur ons dan een bericht. Voor een vrijblijvende offerte kunt u contact met ons opnemen wanneer het u uitkomt.</p>
+                <h3>Wij zijn u graag van dienst!</h3>
+            </div>
+
 <section id="contact" class="background">
     <div class="overlay">
-        <form class="contact-form">
-            <h2>Contact</h2>
+        <form id="myForm" action="https://formsubmit.co/240561@student.glu.nl" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="index.php?status=success&message=Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.">
+            <input type="hidden" name="_autoresponse" value="Bedankt!">
+
+
+
+            <h2 style="color: #fff;">Contact</h2>
+            <?php
+            if (isset($_GET['status'])) {
+                $status = $_GET['status'];
+                $message = isset($_GET['message']) ? urldecode($_GET['message']) : '';
+                $class = $status == 'success' ? 'success' : 'error';
+                echo '<div class="message ' . $class . '">' . htmlspecialchars($message) . '</div>';
+            }
+            ?>
+             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="naam">Naam *</label>
+                    <label for="naam" style="color: #fff;">Naam *</label>
                     <input type="text" id="naam" name="naam" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">E-mail *</label>
+                    <label for="email" style="color: #fff;">E-mail *</label>
                     <input type="email" id="email" name="email" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="telefoon">Telefoon</label>
+                    <label for="telefoon" style="color: #fff;">Telefoon</label>
                     <input type="tel" id="telefoon" name="telefoon">
                 </div>
                 <div class="form-group">
-                    <label for="onderwerp">Onderwerp</label>
+                    <label for="onderwerp" style="color: #fff;">Onderwerp</label>
                     <input type="text" id="onderwerp" name="onderwerp">
                 </div>
             </div>
             <div class="form-group">
-                <label for="bericht">Bericht *</label>
+                <label for="bericht" style="color: #fff;">Bericht *</label>
                 <textarea id="bericht" name="bericht" required placeholder="Vertel ons over uw tuinwensen..."></textarea>
             </div>
             <button type="submit" class="submit-btn">Verstuur</button>
@@ -149,6 +100,10 @@ renderHeader("Hendrik Hogendijk Hoveniers", "home");
     </div>
 </section>
 
-<?php
-renderFooter();
-?>
+<script>
+    if (window.location.search) {
+        setTimeout(() => window.history.replaceState({}, document.title, window.location.pathname), 5000);
+    }
+</script>
+
+<?php renderFooter(); ?>

@@ -10,6 +10,125 @@ function renderHeader($pageTitle = "Hendrik Hogendijk Hoveniers", $activePage = 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $pageTitle; ?></title>
         <link rel="stylesheet" href="style.css">
+        <style>
+            /* Fixed navbar styling */
+            .navbar {
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                z-index: 9999;
+                background: white;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Adjust body to compensate for fixed navbar */
+            body {
+                padding-top: 70px;
+            }
+
+            /* Smooth scrolling with navbar offset */
+            html {
+                scroll-padding-top: 80px;
+                scroll-behavior: smooth;
+            }
+
+            /* Hamburger menu */
+            .hamburger {
+                display: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                width: 100%;
+                height: 60px;
+                background: white;
+            }
+
+            .hamburger span {
+                width: 30px;
+                height: 3px;
+                background-color: #333;
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+
+            /* Mobile responsive */
+            @media screen and (max-width: 768px) {
+                .hamburger {
+                    display: flex;
+                }
+
+                .nav-menu {
+                    display: none !important;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    background: linear-gradient(135deg, rgb(73, 142, 67), rgb(150, 255, 108));
+                    flex-direction: column;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 0.3s ease, visibility 0.3s ease;
+                    border-radius: 0 0 10px 10px;
+                }
+
+                .nav-menu.show {
+                    display: flex !important;
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                .nav-item {
+                    width: 100%;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                }
+
+                .nav-item:last-child {
+                    border-bottom: none;
+                }
+
+                .nav-link {
+                    display: block;
+                    padding: 18px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    color: white;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                }
+
+                .nav-link:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    color: #fff;
+                    transform: translateX(5px);
+                }
+
+                .nav-link.active {
+                    background-color: rgba(255, 255, 255, 0.2);
+                    color: #fff;
+                    font-weight: bold;
+                }
+            }
+
+            /* Hide normal nav on desktop */
+            @media screen and (min-width: 769px) {
+                .hamburger {
+                    display: none;
+                }
+
+                .nav-menu {
+                    display: flex !important;
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -22,10 +141,14 @@ function renderHeader($pageTitle = "Hendrik Hogendijk Hoveniers", $activePage = 
         </header>
 
         <nav class="navbar">
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.php" class="nav-link <?php echo ($activePage == 'home') ? 'active' : ''; ?>">Home</a>
-                </li>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+
                 <li class="nav-item">
                     <a href="index.php#diensten" class="nav-link <?php echo ($activePage == 'diensten') ? 'active' : ''; ?>">Diensten</a>
                 </li>
@@ -42,21 +165,44 @@ function renderHeader($pageTitle = "Hendrik Hogendijk Hoveniers", $activePage = 
                     <a href="index.php#contact" class="nav-link <?php echo ($activePage == 'contact') ? 'active' : ''; ?>">Contact</a>
                 </li>
             </ul>
+        </nav>
 
-            <script>
-                // Smooth scrolling for navigation links
-                document.addEventListener('DOMContentLoaded', function() {
-                    const navLinks = document.querySelectorAll('.nav-link');
+        <script>
+            function toggleMenu() {
+                const navMenu = document.getElementById('navMenu');
+                navMenu.classList.toggle('show');
+            }
 
-                    navLinks.forEach(link => {
-                        link.addEventListener('click', function(e) {
-                            const href = this.getAttribute('href');
+            // Smooth scrolling for navigation links
+            document.addEventListener('DOMContentLoaded', function() {
+                const navLinks = document.querySelectorAll('.nav-link');
 
-                            // Check if it's a hash link (starts with #)
-                            if (href.startsWith('#')) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        // Close mobile menu when link is clicked
+                        if (window.innerWidth <= 768) {
+                            document.getElementById('navMenu').classList.remove('show');
+                        }
+
+                        const href = this.getAttribute('href');
+
+                        if (href.startsWith('#')) {
+                            e.preventDefault();
+                            const targetId = href.substring(1);
+                            const targetElement = document.getElementById(targetId);
+
+                            if (targetElement) {
+                                targetElement.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        } else if (href.includes('index.php#')) {
+                            const currentPage = window.location.pathname;
+                            if (currentPage.includes('index.php') || currentPage.endsWith('/')) {
                                 e.preventDefault();
-                                const targetId = href.substring(1);
-                                const targetElement = document.getElementById(targetId) || document.querySelector('.' + targetId);
+                                const targetId = href.split('#')[1];
+                                const targetElement = document.getElementById(targetId);
 
                                 if (targetElement) {
                                     targetElement.scrollIntoView({
@@ -65,97 +211,31 @@ function renderHeader($pageTitle = "Hendrik Hogendijk Hoveniers", $activePage = 
                                     });
                                 }
                             }
-                            // Check if it's an index.php link with hash
-                            else if (href.includes('index.php#')) {
-                                const currentPage = window.location.pathname;
-                                if (currentPage.includes('index.php') || currentPage.endsWith('/')) {
-                                    e.preventDefault();
-                                    const targetId = href.split('#')[1];
-                                    const targetElement = document.getElementById(targetId) || document.querySelector('.' + targetId);
-
-                                    if (targetElement) {
-                                        targetElement.scrollIntoView({
-                                            behavior: 'smooth',
-                                            block: 'start'
-                                        });
-                                    }
-                                }
-                            }
-                        });
+                        }
                     });
                 });
-            </script>
-        </nav>
+            });
+        </script>
     <?php
 }
 
 function renderFooter()
 {
     ?>
-        <style>
-            .footer-container {
-                padding: 40px 20px 20px 20px;
-            }
-
-            .footer-top-text p,
-            .footer-top-text h3 {
-                margin-bottom: 20px;
-            }
-
-            .footer-content {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 40px;
-                margin-top: 30px;
-            }
-
-            .footer-left,
-            .footer-right {
-                flex: 1 1 250px;
-            }
-
-            .footer-contact-info p,
-            .footer-contact-info h4,
-            .footer-openingsuren p,
-            .footer-openingsuren h4 {
-                margin-bottom: 16px;
-            }
-
-            .footer-divider {
-                border-top: 1px solid #ccc;
-                margin: 30px 0;
-            }
-
-            .footer-phone {
-                font-size: 2em;
-                font-weight: bold;
-                margin-bottom: 24px;
-                margin-top: 0;
-            }
-
-            .footer-map img {
-                max-width: 100%;
-                height: auto;
-                margin-top: 16px;
-            }
-        </style>
         <div class="footer-container">
-            <div class="footer-top-text">
-                <p>
-                    Ik streef ernaar om constant in contact te staan met onze klanten totdat de klus geklaard is.
-                    Als u vragen of speciale verzoeken heeft, stuur ons dan een bericht. Voor een vrijblijvende
-                    offerte kunt u contact met ons opnemen wanneer het u uitkomt.
-                </p>
-                <h3>Wij zijn u graag van dienst!</h3>
-            </div>
+
 
             <div class="footer-divider"></div>
 
             <div class="footer-content">
-                <div class="footer-left">
-                    <p class="footer-phone"><strong>+31 6 21436587</strong></p>
-                    <div class="footer-contact-info">
-                        <h4>Contact gegevens<br>Omgeving-Adres:</h4>
+                <div class="footer-left" style="display: flex; flex-direction: column; gap: 18px;">
+                    <p class="footer-phone" style="font-size: 1.5em; margin-bottom: 10px;">
+                        <strong>
+                            <a href="tel:+31621436587" style="font-size: 1.2em;">+31 6 21436587</a>
+                        </strong>
+                    </p>
+                    <div class="footer-contact-info" style="display: flex; flex-direction: column; gap: 10px;">
+                        <h4 style="margin-bottom: 6px;">Contact gegevens<br>Omgeving-Adres:</h4>
                         <p>Telefonisch beschikbaar van<br>7:00 - 19:00</p>
                         <p>Hendrik Hogendijk Hovenier<br>Utrecht, Zeist en De Bilt</p>
                         <p>Hoefstraat 42, 7143HH Huis ter Heide</p>
@@ -177,11 +257,11 @@ function renderFooter()
             </div>
         </div>
         <footer class="footer">
-            <p>&copy; <?php echo date("Y"); ?> Hendrik Hogendijk Hoveniers. Alle rechten voorbehouden.</p>
-            
+            <p style="height: 20px;">&copy; <?php echo date("Y"); ?> Hendrik Hogendijk Hoveniers. Alle rechten voorbehouden.</p>
+        </footer>
     </body>
 
     </html>
 <?php
-} // End of renderFooter function
+}
 ?>

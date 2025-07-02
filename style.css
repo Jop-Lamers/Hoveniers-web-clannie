@@ -25,7 +25,9 @@ body {
 }
 
 .logo {
-  width: 100px;
+  margin-top: 50px;
+  width: 180px;
+  max-width: 100%;
 }
 
 .slogan {
@@ -610,4 +612,5 @@ body {
 .footer {
   text-align: center;
   background-color: #ececec;
+  padding: 40px 0;
 }
