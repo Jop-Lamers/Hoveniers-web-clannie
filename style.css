@@ -25,9 +25,7 @@ body {
 }
 
 .logo {
-  margin-top: 50px;
-  width: 180px;
-  max-width: 100%;
+  width: 100px;
 }
 
 .slogan {
@@ -426,40 +424,62 @@ body {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .slide img {
-    height: 300px;
+  .header {
+    min-height: 180px;
   }
 
-  .slide-title {
-    font-size: 1.5em;
+  .header-image {
+    min-height: 180px;
+    object-fit: cover;
   }
 
-  .slide-description {
-    font-size: 1em;
+  .logo-container {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
   }
 
-  .prev,
-  .next {
-    padding: 12px;
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 5px;
+  }
+
+  .slogan {
     font-size: 16px;
+    color: #333;
+    text-shadow: none;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    min-height: 150px;
   }
 
-  .slideshow-header h1 {
-    font-size: 2em;
+  .header-image {
+    min-height: 150px;
   }
 
-  .form-row {
-    flex-direction: column;
-    gap: 0;
+  .logo-container {
+    padding: 8px 12px;
+    max-width: 85%;
   }
 
-  .testimonial .content {
-    flex-direction: column;
-    text-align: center;
+  .logo {
+    width: 60px;
+    margin-bottom: 3px;
   }
 
-  .testimonials h1 {
-    font-size: 2em;
+  .slogan {
+    font-size: 14px;
+    line-height: 1.1;
   }
 }
 

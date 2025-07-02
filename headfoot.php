@@ -149,11 +149,12 @@ function renderHeader($pageTitle = "Hendrik Hogendijk Hoveniers", $activePage = 
 
             <ul class="nav-menu" id="navMenu">
 
-                <li class="nav-item">
-                    <a href="index.php#diensten" class="nav-link <?php echo ($activePage == 'diensten') ? 'active' : ''; ?>">Diensten</a>
-                </li>
+                
                 <li class="nav-item">
                     <a href="index.php#over-ons" class="nav-link <?php echo ($activePage == 'over-ons') ? 'active' : ''; ?>">Over Ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.php#diensten" class="nav-link <?php echo ($activePage == 'diensten') ? 'active' : ''; ?>">Diensten</a>
                 </li>
                 <li class="nav-item">
                     <a href="#slideshow-section" class="nav-link <?php echo ($activePage == 'projecten') ? 'active' : ''; ?>">Projecten</a>
