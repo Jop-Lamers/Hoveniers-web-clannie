@@ -3,19 +3,80 @@ include 'headfoot.php';
 renderHeader("Hendrik Hogendijk Hoveniers", "home");
 ?>
 
+<style>
+.services-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-section h2 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.service-item {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+}
+
+.service-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.service-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .services-section h2 {
+        font-size: 2em;
+    }
+}
+</style>
+
 <main class="content">
     <h2 class="intro-title">Welkom bij de website van Hendrik Hogendijk, hovenier in de regio Utrecht, Zeist en de Bilt.</h2>
 
     <div class="main-section">
         <div class="text-block">
             <p>
-                De tuin is een belangrijke plek van de woning, waar je het liefst zoveel mogelijk tijd in doorbrengt. 
-                Bij Hendrik Hogendijk Hoveniers vind ik het daarom belangrijk dat iedereen zich thuis voelt in zijn of haar tuin. 
+                De tuin is een belangrijke plek van de woning, waar je het liefst zoveel mogelijk tijd in doorbrengt.
+                Bij Hendrik Hogendijk Hoveniers vind ik het daarom belangrijk dat iedereen zich thuis voelt in zijn of haar tuin.
                 Ik maak de tuin onderdeel van jouw 'thuis', door hem volledig op jouw wensen af te stemmen.
             </p>
             <p>
-                Met behulp van mooie, natuurlijke en duurzame producten en materialen creëer ik een tuin, die garant staat 
-                voor een jarenlang plezierig buitenleven. Van een knusse veranda en een mooie vijver, tot een gezellig terras 
+                Met behulp van mooie, natuurlijke en duurzame producten en materialen creëer ik een tuin, die garant staat
+                voor een jarenlang plezierig buitenleven. Van een knusse veranda en een mooie vijver, tot een gezellig terras
                 en een kleurrijke bloemborder: ik stop al mijn energie erin.
             </p>
         </div>
@@ -45,16 +106,15 @@ renderHeader("Hendrik Hogendijk Hoveniers", "home");
             </div>
         </div>
     </section>
-<?php
-   include 'slideshow.php';
-?>
-
-    <section id="reviews" class="reviews-section">
-        <h2>Reviews</h2>
-        <p>Lees wat onze klanten zeggen over onze diensten.</p>
-        <!-- Placeholder for reviews, can be dynamically loaded -->
-    </section>
 </main>
+
+<section class="slideshow-section">
+    <?php include 'slideshow.php'; ?>
+</section>
+
+<section id="reviews" class="reviews-section">
+    <?php include 'reviews.php'; ?>
+</section>
 
 <section id="contact" class="background">
     <div class="overlay">

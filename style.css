@@ -89,7 +89,7 @@ body {
     flex-direction: column;
     padding: 10px 0;
   }
-  
+
   .nav-link {
     padding: 12px 20px;
     width: 100%;
@@ -98,8 +98,12 @@ body {
 }
 
 .content {
+  backdrop-filter: blur(8px);
+   background-image:  url("images/vervaagde achtergrond.webp"); 
+  background-size: cover;
+  background-position: center;
   padding: 20px;
-  max-width: 1000px;
+ justify-content: center;
   margin: 0 auto;
 }
 
@@ -111,10 +115,15 @@ body {
 }
 
 .main-section {
+  background-color: #f5f5f5;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  align-items: flex-start;
+ justify-content: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
 }
 
 .text-block {
@@ -213,7 +222,8 @@ body {
   line-height: 1.4;
 }
 
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -223,7 +233,7 @@ body {
   color: white;
   font-weight: bold;
   font-size: 18px;
-  background: rgba(74, 144, 226, 0.8);
+  background: rgba(216, 216, 216, 0.8);
   border: none;
   user-select: none;
   transition: background 0.3s;
@@ -237,33 +247,6 @@ body {
 .prev {
   left: 0;
   border-radius: 0 3px 3px 0;
-}
-
-.prev:hover, .next:hover {
-  background: rgba(74, 144, 226, 1);
-}
-
-.dots-container {
-  text-align: center;
-  padding: 20px;
-  background: #e8e8e8;
-  border-top: 2px solid #4a90e2;
-}
-
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 5px;
-  background-color: #ccc;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s;
-  border: 2px solid #4a90e2;
-}
-
-.dot.active, .dot:hover {
-  background-color: #4a90e2;
 }
 
 .blue-footer {
@@ -453,7 +436,8 @@ body {
     font-size: 1em;
   }
 
-  .prev, .next {
+  .prev,
+  .next {
     padding: 12px;
     font-size: 16px;
   }
@@ -556,7 +540,7 @@ body {
 
 .footer-top-text {
   text-align: center;
-  background-color: #f0f0f0; 
+  background-color: #f0f0f0;
   padding: 20px;
   border-bottom: 5px solid #fdb913;
   color: #000;
