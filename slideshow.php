@@ -190,43 +190,41 @@
       <div class="slide-description">
        een mooie vijver! ideaal voor rust en ontspanning aan het water. 
       </div>
-        </div>
-      </div>
+    </div>
+  </div>
 
-      <div class="slide">
-        <img src="images/tuin2.webp" alt="Groen Grasveld" />
-        <div class="slide-content">
+  <div class="slide">
+    <img src="images/tuin2.webp" alt="Groen Grasveld" />
+    <div class="slide-content">
       <div class="slide-title">Groen Grasveld</div>
       <div class="slide-description">
         Een fris, strak gemaaid grasveldje biedt volop ruimte om te spelen en te genieten van het buitenleven. Perfect voor gezinnen en huisdieren.
       </div>
-        </div>
-      </div>
+    </div>
+  </div>
 
-      <div class="slide">
-        <img src="images/tuin3.webp" alt="Kleine Stadstuin" />
-        <div class="slide-content">
+  <div class="slide">
+    <img src="images/tuin3.webp" alt="Kleine Stadstuin" />
+    <div class="slide-content">
       <div class="slide-title">onze tegelaanleg</div>
       <div class="slide-description">
-      onze mooie tegels zorgen voor een goeie basis voor in uw tuin met een van de sterkste anti groenaanslag lagen
-      </div>
-        </div>
-      </div>
-
-      <div class="slide">
-        <img src="images/tuin4.webp" alt="Landelijke Tuin" />
-        <div class="slide-content">
-      <div class="slide-title">een moderne tuin</div>
-      <div class="slide-description">
-       een moderne tuin gemaakt met de beste kwaliteit materialen en producten, die zorgen voor een lange levensduur en weinig onderhoud.
-      </div>
-        </div>
-      </div>
+        onze mooie tegels zorgen voor een goeie basis voor in uw tuin met een van de sterkste anti groenaanslag lagen
       </div>
     </div>
   </div>
 
- 
+  <div class="slide">
+    <img src="images/tuin4.webp" alt="Landelijke Tuin" />
+    <div class="slide-content">
+      <div class="slide-title">een moderne tuin</div>
+      <div class="slide-description">
+        een moderne tuin gemaakt met de beste kwaliteit materialen en producten, die zorgen voor een lange levensduur en weinig onderhoud.
+      </div>
+    </div>
+  </div>
+
+  <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+  <button class="next" onclick="changeSlide(1)">&#10095;</button>
 </div>
 
 <div class="dots-container">

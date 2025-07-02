@@ -64,7 +64,7 @@ renderHeader("Hendrik Hogendijk Hoveniers", "home");
 }
 </style>
 
-<main class="content">
+<main class="content" id="over-ons">
     <h2 class="intro-title">Welkom bij de website van Hendrik Hogendijk, hovenier in de regio Utrecht, Zeist en de Bilt.</h2>
 
     <div class="main-section">
@@ -108,7 +108,7 @@ renderHeader("Hendrik Hogendijk Hoveniers", "home");
     </section>
 </main>
 
-<section class="slideshow-section">
+<section class="slideshow-section" id="slideshow-section">
     <?php include 'slideshow.php'; ?>
 </section>
 

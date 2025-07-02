@@ -98,20 +98,20 @@ body {
 }
 
 .content {
-  backdrop-filter: blur(8px);
-   background-image:  url("images/vervaagde achtergrond.webp"); 
+  background-image: url("images/vervaagde achtergrond.png");
   background-size: cover;
   background-position: center;
   padding: 20px;
- justify-content: center;
+  justify-content: center;
   margin: 0 auto;
 }
 
 .intro-title {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
+  color: #ffffff;
 }
 
 .main-section {
@@ -119,11 +119,11 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
- justify-content: center;
+  justify-content: center;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-
+  border-radius: 8px;
 }
 
 .text-block {
@@ -605,4 +605,9 @@ body {
   width: 100%;
   height: auto;
   border: 2px solid #ccc;
+}
+
+.footer {
+  text-align: center;
+  background-color: #ececec;
 }

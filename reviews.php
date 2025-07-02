@@ -11,7 +11,7 @@
         <div id="testimonial-container">
             <div class="testimonial">
                 <h2>Hella Hoes</h2>
-                <div class="content">
+                <div class="review-content">
                     <div class="avatar"></div>
                     <p>“Heel erg bedankt voor de efficiënte service, je was heel snel klaar en ik zal je nummer zeker behouden om je weer te gebruiken.”</p>
                 </div>
@@ -20,7 +20,7 @@
 
             <div class="testimonial">
                 <h2>Henk Hoes</h2>
-                <div class="content">
+                <div class="review-content">
                     <div class="avatar"></div>
                     <p>“Ga alsjeblieft door met het bezoeken aan het huis van mijn vader, want je doet geweldig werk!”</p>
                 </div>
@@ -29,7 +29,7 @@
 
             <div class="testimonial">
                 <h2>Hans Hogedijk</h2>
-                <div class="content">
+                <div class="review-content">
                     <div class="avatar"></div>
                     <p>“Zoals u weet ben ik altijd tevreden geweest met de service die u de afgelopen jaren heeft verleend. Vertel me alstublieft wanneer u klaar bent om volgend jaar weer te beginnen met het maaien van mijn gazons, aangezien ik graag uw diensten wil blijven ontvangen.”</p>
                 </div>
@@ -42,13 +42,20 @@
 
 
 
-    <script>
-        const loadMoreButton = document.querySelector('.load-more');
+  <script>
+    const loadMoreButton = document.querySelector('.load-more');
 
-        loadMoreButton.addEventListener('click', function() {
-            loadMoreButton.classList.add('extra-gap');
-        });
-    </script>
+    loadMoreButton.addEventListener('click', function() {
+        loadMoreButton.classList.toggle('extra-gap');
+
+        // Optioneel: verander de pijl van ↓ naar ↑ en terug
+        if (loadMoreButton.classList.contains('extra-gap')) {
+            loadMoreButton.textContent = '↑';
+        } else {
+            loadMoreButton.textContent = '↓';
+        }
+    });
+</script>
 
 
 
@@ -85,7 +92,7 @@ body {
     font-size: 1.25rem;
 }
 
-.content {
+.review-content {
     display: flex;
     align-items: flex-start;
 }
@@ -99,7 +106,7 @@ body {
     margin-right: 20px;
 }
 
-.content p {
+.review-content p {
     font-size: 1rem;
     line-height: 1.5;
 }

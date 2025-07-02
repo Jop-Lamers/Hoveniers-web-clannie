@@ -33,15 +33,58 @@ function renderHeader($pageTitle = "Hendrik Hogendijk Hoveniers", $activePage = 
                     <a href="index.php#over-ons" class="nav-link <?php echo ($activePage == 'over-ons') ? 'active' : ''; ?>">Over Ons</a>
                 </li>
                 <li class="nav-item">
-                    <a href="slideshow.php" class="nav-link <?php echo ($activePage == 'projecten') ? 'active' : ''; ?>">Projecten</a>
+                    <a href="#slideshow-section" class="nav-link <?php echo ($activePage == 'projecten') ? 'active' : ''; ?>">Projecten</a>
                 </li>
                 <li class="nav-item">
-                    <a href="reviews.php" class="nav-link <?php echo ($activePage == 'reviews') ? 'active' : ''; ?>">Reviews</a>
+                    <a href="index.php#reviews" class="nav-link <?php echo ($activePage == 'reviews') ? 'active' : ''; ?>">Reviews</a>
                 </li>
                 <li class="nav-item">
                     <a href="index.php#contact" class="nav-link <?php echo ($activePage == 'contact') ? 'active' : ''; ?>">Contact</a>
                 </li>
             </ul>
+
+            <script>
+                // Smooth scrolling for navigation links
+                document.addEventListener('DOMContentLoaded', function() {
+                    const navLinks = document.querySelectorAll('.nav-link');
+
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', function(e) {
+                            const href = this.getAttribute('href');
+
+                            // Check if it's a hash link (starts with #)
+                            if (href.startsWith('#')) {
+                                e.preventDefault();
+                                const targetId = href.substring(1);
+                                const targetElement = document.getElementById(targetId) || document.querySelector('.' + targetId);
+
+                                if (targetElement) {
+                                    targetElement.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }
+                            }
+                            // Check if it's an index.php link with hash
+                            else if (href.includes('index.php#')) {
+                                const currentPage = window.location.pathname;
+                                if (currentPage.includes('index.php') || currentPage.endsWith('/')) {
+                                    e.preventDefault();
+                                    const targetId = href.split('#')[1];
+                                    const targetElement = document.getElementById(targetId) || document.querySelector('.' + targetId);
+
+                                    if (targetElement) {
+                                        targetElement.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start'
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
+            </script>
         </nav>
     <?php
 }
@@ -53,35 +96,43 @@ function renderFooter()
             .footer-container {
                 padding: 40px 20px 20px 20px;
             }
+
             .footer-top-text p,
             .footer-top-text h3 {
                 margin-bottom: 20px;
             }
+
             .footer-content {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 40px;
                 margin-top: 30px;
             }
-            .footer-left, .footer-right {
+
+            .footer-left,
+            .footer-right {
                 flex: 1 1 250px;
             }
+
             .footer-contact-info p,
             .footer-contact-info h4,
             .footer-openingsuren p,
             .footer-openingsuren h4 {
                 margin-bottom: 16px;
             }
+
             .footer-divider {
                 border-top: 1px solid #ccc;
                 margin: 30px 0;
             }
+
             .footer-phone {
                 font-size: 2em;
                 font-weight: bold;
                 margin-bottom: 24px;
                 margin-top: 0;
             }
+
             .footer-map img {
                 max-width: 100%;
                 height: auto;
@@ -125,6 +176,9 @@ function renderFooter()
                 </div>
             </div>
         </div>
+        <footer class="footer">
+            <p>&copy; <?php echo date("Y"); ?> Hendrik Hogendijk Hoveniers. Alle rechten voorbehouden.</p>
+            
     </body>
 
     </html>
